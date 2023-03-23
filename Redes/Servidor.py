@@ -79,7 +79,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as TCPServerSocket:
 
         print("indice enviado = ", k, "\n")
         # El servidor le responde al cliente
-        sc.send(str(k))
+        K = str(k)
+        sc.send(bytes(K,'utf-8'))
 
         while True:
             if (M[0] == "O" and M[1] == "O" and M[2] == "O"):

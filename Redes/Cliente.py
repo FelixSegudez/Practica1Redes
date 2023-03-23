@@ -39,7 +39,7 @@ def Jugada():
 
 
 def tablero():
-    os.system("cls")
+    #os.system("cls")
     print("                    ")
     print("     1   2   3      ")
     print("   +---+---+---+    ")
@@ -55,14 +55,14 @@ def tablero():
 M = ['#', '#', '#', '#', '#', '#', '#', '#', '#']
 end = False
 
-HOST = "127.0.0.1"  # Hostname o  dirección IP del servidor
+HOST = "192.168.64.5"  # Hostname o  dirección IP del servidor
 PORT = 65432  # Puerto del servidor
 buffer_size = 1024
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as TCPClientSocket:
     TCPClientSocket.connect((HOST, PORT))
 
-    TCPClientSocket.send("juguemos")
+    TCPClientSocket.send(bytes("juguemos",'utf-8'))
 
     # Creamos un bucle para mantener la conexion
     while True:
@@ -79,7 +79,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as TCPClientSocket:
 
         M[p] = 'X'
         tablero()
-        TCPClientSocket.send(str(p))
+        P=str(p)
+        TCPClientSocket.send(bytes(P,'utf-8'))
 
         while True:
             if (M[0] == "X" and M[1] == "X" and M[2] == "X"):
